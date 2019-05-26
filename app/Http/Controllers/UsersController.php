@@ -1,0 +1,47 @@
+<?php
+
+namespace App\Http\Controllers;
+use Auth;
+use Image;
+use Illuminate\Support\Facades\Input;
+
+use Illuminate\Http\Request;
+use App\User;
+use Validator;
+use App\Post;
+
+class UsersController extends Controller
+{
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $users = User::all();
+        return view('home',compact('users')) ;
+    }
+
+
+
+
+    public function profile(){
+        return view('profile', array('user' => Auth::user()) );
+    }
+
+
+
+
+
+}
